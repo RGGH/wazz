@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAssembly Test</title>
+</head>
+<body>
+  <h1>Test WebAssembly: Calculate Area of Rectangle</h1>
+  <p id="result"></p>
+
+  <script>
+    // Load the WebAssembly module
+    fetch('rectangle_area.wasm')
+      .then(response => response.arrayBuffer())
+      .then(bytes => WebAssembly.instantiate(bytes))
+      .then(result => {
+        const area = result.instance.exports.area;
+
+        // Test the area function with width and height
+        const width = 5;
+        const height = 10;
+        const areaResult = area(width, height);
+
+        // Display the result
+        document.getElementById('result').textContent = `Area of rectangle: ${areaResult}`;
+      })
+      .catch(console.error);
+  </script>
+</body>
+</html>
+
