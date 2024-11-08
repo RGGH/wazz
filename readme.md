@@ -6,4 +6,4 @@
 - convert to wasm
 - call from js (put the <script> inside index.html)
     
-    wat2wasm calc.wat -o rectangle_area.wasm
+    ```wat2wasm calc.wat -o rectangle_area.wasm```
